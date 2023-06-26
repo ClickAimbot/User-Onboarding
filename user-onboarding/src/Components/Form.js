@@ -2,13 +2,15 @@ import react from 'react';
 
 const Form = (props) => {
     const { change, submit } = props;
-    const { username, email, password, tos } = props.values;
+    const { username, email, password, checked } = props.values;
 
-    onChange = (e) => {
+    const onChange = (e) => {
         const { name, value, checked, type } = e.target;
+        const newVal = type === 'checkbox' ? checked : value;
+        change(name, newVal);
     }
 
-    onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         submit();
     }
